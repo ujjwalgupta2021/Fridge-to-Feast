@@ -1,0 +1,24 @@
+{
+  "name": "fridge-to-feast",
+  "version": "1.0.0",
+  "description": "Pure Veg Recipe Visualizer (Dual-Input Edition) for Hacktoberfest 2026 Week 3: Slow and Steady Challenge",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y serve .",
+    "start": "npx -y serve .",
+    "preview": "npx -y serve ."
+  },
+  "keywords": [
+    "hacktoberfest",
+    "hacktoberfest2026",
+    "devchallenge",
+    "hf26challenge",
+    "pure-vegetarian",
+    "gemini-ai",
+    "tailwindcss-v4",
+    "web-audio-api",
+    "local-first"
+  ],
+  "author": "",
+  "license": "MIT"
+}

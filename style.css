@@ -1,0 +1,258 @@
+/* ==========================================================================
+   Fridge-to-Feast | Pure Veg Recipe Visualizer Stylesheet
+   Tailwind CSS Version 4 Configuration & Custom UI Component Tokens
+   Theme: Slow and Steady (Hacktoberfest 2026 Week 3)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Design Tokens & CSS Custom Properties
+   -------------------------------------------------------------------------- */
+:root {
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #faf6f0;
+  --color-cream-200: #f4ede2;
+  --color-cream-300: #e8dfd5;
+
+  --color-beige: #e8dfd5;
+  --color-beige-dark: #d6c8b9;
+
+  --color-roasted: #2b2420;
+  --color-roasted-light: #423832;
+  --color-roasted-muted: #736359;
+
+  --color-emerald: #10b981;
+  --color-emerald-dark: #059669;
+  --color-emerald-light: #34d399;
+  --color-emerald-bg: #ecfdf5;
+
+  --color-sloth-ochre: #f59e0b;
+  --color-sloth-amber: #d97706;
+  --color-sloth-soft: #fef3c7;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+
+  --shadow-cozy: 0 4px 20px -2px rgba(43, 36, 32, 0.08), 0 2px 6px -1px rgba(43, 36, 32, 0.04);
+  --shadow-cozy-lg: 0 10px 30px -4px rgba(43, 36, 32, 0.12), 0 4px 12px -2px rgba(43, 36, 32, 0.06);
+  --shadow-tactile: 4px 4px 0px #2b2420;
+  --shadow-tactile-sm: 2px 2px 0px #2b2420;
+  --shadow-tactile-hover: 1px 1px 0px #2b2420;
+}
+
+/* --------------------------------------------------------------------------
+   Base Font Smoothing & Smooth Scrolling
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* --------------------------------------------------------------------------
+   Custom Cozy Scrollbars (Cross-Browser Standard & WebKit)
+   -------------------------------------------------------------------------- */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d6c8b9 #f4ede2;
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: #3e332c #1e1916;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f4ede2;
+  border-radius: 9999px;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: #1e1916;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d6c8b9;
+  border-radius: 9999px;
+  border: 1px solid #f4ede2;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #3e332c;
+  border: 1px solid #1e1916;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
+
+/* --------------------------------------------------------------------------
+   Range Slider Styling (Full Cross-Browser Appearance Compatibility)
+   -------------------------------------------------------------------------- */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e8dfd5;
+  border-radius: 9999px;
+  border: 2px solid #2b2420;
+  height: 14px;
+  outline: none;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.dark input[type="range"] {
+  background: #2c2622;
+  border-color: #52453e;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #2b2420;
+  cursor: grab;
+  box-shadow: 2px 2px 0px #2b2420;
+  transition: transform 120ms ease, background-color 150ms ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #059669;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #2b2420;
+  cursor: grab;
+  box-shadow: 2px 2px 0px #2b2420;
+  transition: transform 120ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Checklist & Card Animations
+   -------------------------------------------------------------------------- */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slothFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(2deg);
+  }
+}
+
+.sloth-float {
+  animation: slothFloat 4s ease-in-out infinite;
+}
+
+.drag-over {
+  border-color: #10b981 !important;
+  background-color: #ecfdf5 !important;
+  transform: scale(1.01);
+}
+
+.recipe-step-item {
+  transition: all 180ms ease;
+}
+
+.recipe-step-item.step-done {
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+
+.recipe-step-item.step-done .step-number-circle {
+  background-color: #10b981 !important;
+  color: #faf6f0 !important;
+  border-color: #2b2420 !important;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ingredient-chip {
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* --------------------------------------------------------------------------
+   Sloth Timer & Substitutions Micro-Interactions
+   -------------------------------------------------------------------------- */
+#timer-display {
+  text-shadow: 0 2px 4px rgba(43, 36, 32, 0.05);
+}
+
+.dark #timer-display {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.lazy-swap-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 2px 2px 0px #2b2420;
+}
+
+.dark .lazy-swap-action-btn:hover {
+  box-shadow: 2px 2px 0px #52453e;
+}
+
+/* --------------------------------------------------------------------------
+   Toggle Switch Dot Styling (Prevents HTML Attribute Syntax Tokenizer Traps)
+   -------------------------------------------------------------------------- */
+.toggle-dot::after {
+  content: "";
+}
+
+/* --------------------------------------------------------------------------
+   Print Optimization for Cookbooks
+   -------------------------------------------------------------------------- */
+@media print {
+  header, #drop-zone, #text-intake-form, #energy-slider, button, #toast, .pantry-staples-container {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  #recipe-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
